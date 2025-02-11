@@ -1,19 +1,19 @@
 <?php
 $mysqli = new mysqli("localhost", "root", "", "reminder_db");
 
-// Check connection
+
 if ($mysqli->connect_error) {
     die("Connection failed: " . $mysqli->connect_error);
 }
 
-// Fetch the reminder to edit
+
 if (isset($_GET["id"])) {
     $id = (int) $_GET["id"];
     $result = $mysqli->query("SELECT * FROM reminders WHERE id = $id");
     $reminder = $result->fetch_assoc();
 }
 
-// Update the reminder
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id = (int) $_POST["id"];
     $title = $mysqli->real_escape_string($_POST["title"]);
